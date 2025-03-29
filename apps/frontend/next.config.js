@@ -19,6 +19,14 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
+  webpack: (config, _) => ({
+    ...config,
+    watchOptions: {
+      ...config.watchOptions,
+      poll: 800,
+      aggregateTimeout: 300,
+    },
+  }),
 };
 
 const plugins = [
