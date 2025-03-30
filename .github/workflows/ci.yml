@@ -27,7 +27,7 @@ jobs:
           data:
             '{"content": "PR#${{ github.event.pull_request.number }}: ${{github.event.pull_request.title}}
             \nThe pull request was opened by ${{ github.event.pull_request.user.login }}
-            \nLink: ${{ github.event.pull_request.html_url }}"}'
+            \nLink: ${{ github.event.pull_request.body }}"}'
 # jobs:
 #   main:
 #     runs-on: ubuntu-latest
