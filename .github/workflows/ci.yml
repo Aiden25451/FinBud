@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Testing shtuff
-        run: echo -n ${{ github.event.pull_request.body }}
+        run: echo -n '${{ github.event.pull_request.body }}'
 
       - name: Send Discord PR Notification
         uses: fjogeleit/http-request-action@v1
