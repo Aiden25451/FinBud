@@ -25,11 +25,11 @@ jobs:
           url: 'https://discord.com/api/webhooks/1355672353274593500/WzySXs_M23UxybT4i9HMm2QywdId_H5c6yhhCddJ0izmF0svidr4iaILogoC28bCQ7YV'
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
-          data: '{"content": "# PLEASE REVIEW NEW PR
+          data: '{"content": "# NEW PR OPEN
             \n## [PR#${{ github.event.pull_request.number }}](${{ github.event.pull_request.html_url }}) : ${{github.event.pull_request.title}}
             \nBy ${{ github.event.pull_request.user.login }}
-            \n${{ env.PR_FORMATTED }}
-            \n## Link"}'
+            \nHey @everyone, could I get a review please
+            \n${{ env.PR_FORMATTED }}"}'
 # jobs:
 #   main:
 #     runs-on: ubuntu-latest
