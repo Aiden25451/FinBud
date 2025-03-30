@@ -15,16 +15,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Testing shtuff
+      - name: Creating Discord PR Notification
         run: |
           echo "PR_DESCRIPTION<<EOF" >> $GITHUB_ENV
           echo "HELLO WORLD" >> $GITHUB_ENV
           echo "HELLO Next Line" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
-      - name: Testing shtuff2
+      - name: Formatting Discord PR Notification
         run: |
-          echo "${{ env.PR_DESCRIPTION }}" | tr '\n' ' '
+          echo "PR_DESCRIPTION_FORMATTED<<EOF" >> $GITHUB_ENV
+          echo "${{ env.PR_DESCRIPTION }}" | tr '\n' '\\n' >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
       - name: Send Discord PR Notification
         uses: fjogeleit/http-request-action@v1
@@ -34,7 +36,7 @@ jobs:
           customHeaders: '{"Content-Type": "application/json"}'
           data:
             '{"content": "PR#${{ github.event.pull_request.number }}: ${{github.event.pull_request.title}}
-            \n${{ env.PR_DESCRIPTION }}"}'
+            \n${{ env.PR_DESCRIPTION_FORMATTED }}"}'
 
             # '{"content": "PR#${{ github.event.pull_request.number }}: ${{github.event.pull_request.title}}
             # \nThe pull request was opened by ${{ github.event.pull_request.user.login }}
