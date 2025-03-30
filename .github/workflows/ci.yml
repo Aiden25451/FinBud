@@ -21,8 +21,8 @@ jobs:
           url: 'https://discord.com/api/webhooks/1355672353274593500/WzySXs_M23UxybT4i9HMm2QywdId_H5c6yhhCddJ0izmF0svidr4iaILogoC28bCQ7YV'
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
-          data: '{"content": "PR: ${{ github.event.pull_request.number }} \n
-            Please work"}'
+          data: '{"content": "PR: ${{ github.event.pull_request.number }}\n
+            Title: ${{github.event.pull_request.title}}"}'
 # jobs:
 #   main:
 #     runs-on: ubuntu-latest
