@@ -22,7 +22,7 @@ jobs:
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
           data: '{"content": "PR: ${{ github.event.pull_request.number }}\n
-            Title: ${{github.event.pull_request.title}}"}'
+          Title: ${{github.event.pull_request.title}}"}'
 # jobs:
 #   main:
 #     runs-on: ubuntu-latest
