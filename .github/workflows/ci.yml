@@ -24,7 +24,7 @@ jobs:
           data:
             '{"content": "PR#${{ github.event.pull_request.number }}: ${{github.event.pull_request.title}}
             \nThe pull request was opened by ${{ github.event.pull_request.user.login }}
-            \n${{ github.event.pull_request.body }}"}'
+            \n${{ github.event.comment.body }}"}'
 # jobs:
 #   main:
 #     runs-on: ubuntu-latest
