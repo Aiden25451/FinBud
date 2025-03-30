@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Testing shtuff
-        run: echo -e "The pull request was opened by ${{ github.event.pull_request.body}}//$'\n'/'\\n'"
+        run: echo -e "${{ github.event.pull_request.body}}//$'\n'/'\\n'"
 
       - name: Send Discord PR Notification
         uses: fjogeleit/http-request-action@v1
