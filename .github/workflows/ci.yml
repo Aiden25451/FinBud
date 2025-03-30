@@ -23,7 +23,8 @@ jobs:
           customHeaders: '{"Content-Type": "application/json"}'
           data:
             '{"content": "PR#${{ github.event.pull_request.number }}: ${{github.event.pull_request.title}}
-            \nThe pull request was opened by ${{ github.event.pull_request.user.login }}"}'
+            \nThe pull request was opened by ${{ github.event.pull_request.user.login }}
+            \n${{ github.event.pull_request.comments }}"}'
 # jobs:
 #   main:
 #     runs-on: ubuntu-latest
