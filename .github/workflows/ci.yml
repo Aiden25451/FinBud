@@ -28,9 +28,9 @@ jobs:
           data: '{"content": "# PLEASE REVIEW NEW PR
             \n## [PR#${{ github.event.pull_request.number }}](${{ github.event.pull_request.html_url }}) : ${{github.event.pull_request.title}}
             \nBy ${{ github.event.pull_request.user.login }}
-            \n-------------------------------
+            \n## Details
             \n${{ env.PR_FORMATTED }}
-            \n-------------------------------\n"}'
+            \n\n"}'
 # jobs:
 #   main:
 #     runs-on: ubuntu-latest
