@@ -15,8 +15,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Testing shtuff
-        run: echo -n '${{ github.event.pull_request.body }}'
+      - name: Set PR Description
+        run: |
+          echo "PR_DESCRIPTION<<EOF" >> $GITHUB_ENV
+          echo "PR#${{ github.event.pull_request.number }}: ${{ github.event.pull_request.title }}" >> $GITHUB_ENV
+          echo "The pull request was opened by ${{ github.event.pull_request.user.login }}" >> $GITHUB_ENV
+          echo "Link: ${{ github.event.pull_request.html_url }}" >> $GITHUB_ENV
+          echo "Description: ${{ github.event.pull_request.body }}" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
       - name: Send Discord PR Notification
         uses: fjogeleit/http-request-action@v1
@@ -24,10 +30,7 @@ jobs:
           url: 'https://discord.com/api/webhooks/1355672353274593500/WzySXs_M23UxybT4i9HMm2QywdId_H5c6yhhCddJ0izmF0svidr4iaILogoC28bCQ7YV'
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
-          data:
-            '{"content": "PR#${{ github.event.pull_request.number }}: ${{github.event.pull_request.title}}
-            \nThe pull request was opened by ${{ github.event.pull_request.user.login }}
-            \nLink: ${{ github.event.pull_request.body }}"}'
+          data: '{"content": "${{ env.PR_DESCRIPTION }}"}'
 # jobs:
 #   main:
 #     runs-on: ubuntu-latest
