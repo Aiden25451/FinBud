@@ -12,6 +12,7 @@ permissions:
 
 jobs:
   notify-pr-on-discord:
+    environment: ci pipeline
     runs-on: ubuntu-latest
 
     steps:
@@ -22,7 +23,7 @@ jobs:
       - name: Send Discord PR Notification
         uses: fjogeleit/http-request-action@v1
         with:
-          url: 'https://discord.com/api/webhooks/1355672353274593500/WzySXs_M23UxybT4i9HMm2QywdId_H5c6yhhCddJ0izmF0svidr4iaILogoC28bCQ7YV'
+          url: '${{ secrets.DISCORD_WEBHOOK }}'
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
           data: '{"content": "# NEW PR OPEN
