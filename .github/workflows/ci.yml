@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: Fromatting text
         run: |
-          echo "PR_FORMATTED=$(echo "${{ github.event.pull_request.body }}" | tr -d '\r' | sed ':a;N;$!ba;s/\n/\\n/g')" >> $GITHUB_ENV
+          echo "PR_FORMATTED=$(echo "${{ github.event.pull_request.body }}" | tr -d '\r'" >> $GITHUB_ENV
 
       - name: Send Discord PR Notification
         uses: fjogeleit/http-request-action@v1
