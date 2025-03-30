@@ -34,11 +34,8 @@ jobs:
           customHeaders: '{"Content-Type": "application/json"}'
           data:
             '{"content": "PR#${{ github.event.pull_request.number }}: ${{github.event.pull_request.title}}
-            \n${{ env.PR_FORMATTED }}"}'
-
-            # '{"content": "PR#${{ github.event.pull_request.number }}: ${{github.event.pull_request.title}}
-            # \nThe pull request was opened by ${{ github.event.pull_request.user.login }}
-            # \nLink: ${{ github.event.pull_request.html_url }}"}'
+            \nThe pull request was opened by ${{ github.event.pull_request.user.login }}
+            \nLink: ${{ github.event.pull_request.html_url }}"}'
 # jobs:
 #   main:
 #     runs-on: ubuntu-latest
