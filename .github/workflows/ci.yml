@@ -22,7 +22,6 @@ jobs:
           echo "The pull request was opened by ${{ github.event.pull_request.user.login }}" >> $GITHUB_ENV
           echo "Link: ${{ github.event.pull_request.html_url }}" >> $GITHUB_ENV
           echo "Description: ${{ github.event.pull_request.body }}" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
 
       - name: Send Discord PR Notification
         uses: fjogeleit/http-request-action@v1
