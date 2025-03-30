@@ -25,8 +25,8 @@ jobs:
           url: 'https://discord.com/api/webhooks/1355672353274593500/WzySXs_M23UxybT4i9HMm2QywdId_H5c6yhhCddJ0izmF0svidr4iaILogoC28bCQ7YV'
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
-          data:
-            '{"content": "PR#${{ github.event.pull_request.number }}: ${{github.event.pull_request.title}}
+          data: '{"content": "# PR REVIEW
+            \nPR#${{ github.event.pull_request.number }}: ${{github.event.pull_request.title}}
             \nBy ${{ github.event.pull_request.user.login }}
             \n-------------------------------
             \n${{ env.PR_FORMATTED }}
