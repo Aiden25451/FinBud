@@ -16,7 +16,10 @@ jobs:
 
     steps:
       - name: Testing shtuff
-        run: echo "PR_DESCRIPTION<<EOF HELLO WORLD EOF" >> $GITHUB_ENV
+        run: |
+          echo "PR_DESCRIPTION<<EOF" >> $GITHUB_ENV
+          echo "HELLO WORLD" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
       - name: Send Discord PR Notification
         uses: fjogeleit/http-request-action@v1
