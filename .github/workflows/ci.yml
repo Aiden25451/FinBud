@@ -11,12 +11,12 @@ permissions:
   contents: read
 
 jobs:
-  notify-pr-on-discord:
+  send-pr-review-request-discord:
     environment: ci pipeline
     runs-on: ubuntu-latest
 
     steps:
-      - name: Fromatting PR Body
+      - name: Formatting PR Body
         run: |
           echo "PR_BODY_FORMATTED=$(echo "${{ github.event.pull_request.body }}" | tr -d '\r' | sed ':a;N;$!ba;s/\n/\\n/g')" >> $GITHUB_ENV
 
