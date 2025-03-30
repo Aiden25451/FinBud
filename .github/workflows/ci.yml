@@ -21,6 +21,9 @@ jobs:
           echo "HELLO WORLD" >> $GITHUB_ENV
           echo "HELLO Next Line" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
+
+      - name: Testing shtuff2
+        run: |
           echo "${{ env.PR_DESCRIPTION }}" | tr '\n' ' '
 
       - name: Send Discord PR Notification
