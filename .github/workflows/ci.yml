@@ -15,6 +15,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Testing shtuff
+        run: echo -n ${{ github.event.pull_request.body }}
+
       - name: Send Discord PR Notification
         uses: fjogeleit/http-request-action@v1
         with:
