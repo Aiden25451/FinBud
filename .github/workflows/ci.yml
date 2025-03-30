@@ -19,7 +19,9 @@ jobs:
         run: |
           echo "PR_DESCRIPTION<<EOF" >> $GITHUB_ENV
           echo "HELLO WORLD" >> $GITHUB_ENV
+          echo "HELLO Next Line" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
+          echo "${{ env.PR_DESCRIPTION }}" | tr '\n' ' '
 
       - name: Send Discord PR Notification
         uses: fjogeleit/http-request-action@v1
