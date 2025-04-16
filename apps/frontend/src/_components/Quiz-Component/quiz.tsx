@@ -20,7 +20,6 @@ import { useRouter } from 'next/navigation';
 import TfsaCalculatorButton from '../Calculator-Component/TFSA/TfsaCalculatorButton';
 import { HistoryState, Node } from '@/_data/types/types';
 import { TypeAnimation } from 'react-type-animation';
-import Loader from '../Loader-Component/Loader';
 import FhsaCalculatorComponent from '../Calculator-Component/FHSA/FhsaCalculatorComponent';
 import FhsaCalculatorButton from '../Calculator-Component/FHSA/FhsaCalculatorButton';
 
@@ -135,7 +134,6 @@ export default function QuizPage({ data }) {
 
   return (
     <>
-      {loading && <Loader />}
       <div className="h-screen flex items-center justify-center">
         {/* Parent container for image and text */}
         <div

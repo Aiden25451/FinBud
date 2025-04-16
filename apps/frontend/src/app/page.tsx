@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { TypeAnimation } from 'react-type-animation';
 import Textbox from '@/_components/Textbox-Component/Textbox';
-import Loader from '@/_components/Loader-Component/Loader';
 import Button from '@/_components/Button-Component/Button';
 import { redirect } from 'next/navigation';
 
@@ -27,7 +26,6 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      {loading && <Loader />}
       <div className="h-screen flex items-center justify-center">
         {/* Parent container for image and text */}
         <div
