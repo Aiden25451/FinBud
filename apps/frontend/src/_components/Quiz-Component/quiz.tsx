@@ -42,6 +42,13 @@ export default function QuizPage({ data }) {
   const [showFhsaCalculator, setshowFhsaCalculator] = React.useState(false);
   const [showLink, setShowLink] = React.useState(false);
 
+  /*
+   TODO: Seperate into different components
+   - One component for quiz question/info box
+   - One component for questions
+   - This main component will be server side and hold as much drawing as possible
+  */
+
   function getInitialState(data: HistoryState): HistoryState {
     let hist: HistoryState = data;
     if (data.initialState) {
