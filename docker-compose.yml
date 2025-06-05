@@ -1,34 +1,4 @@
 services:
-  frontend:
-    container_name: frontend
-    build: ./apps/frontend
-    command: npm run dev
-    ports:
-      - "3000:3000"
-    volumes:
-      - "./apps/frontend:/app"
-    depends_on:
-      - dynamodb-local
-    networks:
-      - app-network
-
-  backend:
-    container_name: backend
-    build: ./apps/backend
-    command: dotnet watch --urls "http://0.0.0.0:5123"
-    ports:
-      - "5123:5123"
-    volumes:
-      - "./apps/backend:/app"
-    depends_on:
-      - dynamodb-local
-    environment:
-      - AWS_REGION=us-east-1
-      - AWS_ACCESS_KEY_ID=testkey
-      - AWS_SECRET_ACCESS_KEY=testsecret
-    networks:
-      - app-network
-
   dynamodb-local:
     command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
     image: "amazon/dynamodb-local:latest"

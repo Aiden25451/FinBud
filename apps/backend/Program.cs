@@ -5,6 +5,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authorization;
 using Amazon.DynamoDBv2;
+using Amazon;
+using Amazon.Runtime;
 using backend.Repositories;
 using backend.Services;
 
@@ -12,6 +14,14 @@ var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
 var domain = $"https://{builder.Configuration["Auth0:Domain"]}/";
+
+
+bool isDeveloperMode = args.Contains("--developer");
+
+if (isDeveloperMode)
+{
+  Console.WriteLine("Developer mode enabled!");
+}
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 .AddJwtBearer(options =>
@@ -31,10 +41,10 @@ builder.Services.AddCors(options =>
   options.AddPolicy("AllowLocalhost",
       policy =>
       {
-        policy.WithOrigins("http://localhost:3000") // Allow frontend URL
-                .AllowAnyMethod() // Allow GET, POST, PUT, DELETE, etc.
-                .AllowAnyHeader() // Allow all headers
-                .AllowCredentials(); // Allow cookies and auth headers
+        policy.WithOrigins("http://localhost:3000")
+          .AllowAnyMethod()
+          .AllowAnyHeader()
+          .AllowCredentials();
       });
 });
 
@@ -73,14 +83,26 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
 
-AmazonDynamoDBConfig clientConfig = new AmazonDynamoDBConfig();
-// Set the endpoint URL
-clientConfig.ServiceURL = config.GetValue<string>("Database:Link");
+builder.Services.AddSingleton<IAmazonDynamoDB>(_ =>
+{
+  if (isDeveloperMode)
+  {
 
-AmazonDynamoDBClient client = new AmazonDynamoDBClient(clientConfig);
-builder.Services.AddSingleton<IAmazonDynamoDB>(_ => client);
+    var fakeCreds = new BasicAWSCredentials("fake", "fake");
+    var config = new AmazonDynamoDBConfig
+    {
+      RegionEndpoint = RegionEndpoint.USEast1,
+      ServiceURL = "http://localhost:8000",
+      UseHttp = true
+    };
 
-builder.Services.AddSingleton<IClientRepository>(provider =>
+    return new AmazonDynamoDBClient(fakeCreds, config);
+  }
+  else
+  {
+    return new AmazonDynamoDBClient(RegionEndpoint.USEast1);
+  }
+}); builder.Services.AddSingleton<IClientRepository>(provider =>
     new ClientRepository(provider.GetRequiredService<IAmazonDynamoDB>(),
         config.GetValue<string>("Database:TableName")));
 builder.Services.AddSingleton<IClientService, ClientService>();
